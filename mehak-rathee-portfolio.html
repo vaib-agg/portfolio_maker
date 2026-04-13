@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mehak Rathee — Social Media Strategist</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --dark: #111111;
+    --card: #181818;
+    --border: #222222;
+    --pink: #e8547a;
+    --pink-soft: #f0859f;
+    --gold: #c9a96e;
+    --white: #f5f0eb;
+    --muted: #888;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom Cursor */
+  .cursor {
+    position: fixed;
+    width: 10px; height: 10px;
+    background: var(--pink);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, width 0.2s, height 0.2s, background 0.2s;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1px solid var(--pink);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.18s ease, width 0.2s, height 0.2s, opacity 0.2s;
+    opacity: 0.5;
+  }
+  body:hover .cursor { opacity: 1; }
+
+  /* Noise grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+    backdrop-filter: blur(2px);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 18px;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--pink); }
+
+  /* Mobile nav toggle */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .nav-toggle span {
+    width: 24px; height: 1.5px;
+    background: var(--white);
+    transition: all 0.3s;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-text {
+    position: absolute;
+    top: 50%;
+    right: -2%;
+    transform: translateY(-50%);
+    font-family: var(--font-display);
+    font-size: clamp(120px, 20vw, 280px);
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.04);
+    pointer-events: none;
+    white-space: nowrap;
+    line-height: 1;
+    user-select: none;
+  }
+  .hero-tag {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(52px, 9vw, 130px);
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--pink);
+  }
+  .hero-sub {
+    margin-top: 32px;
+    font-size: clamp(15px, 2vw, 18px);
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.7;
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    margin-top: 56px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+    flex-wrap: wrap;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+  }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+  }
+  .stat-num span { color: var(--pink); }
+  .stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+  .hero-scroll {
+    position: absolute;
+    bottom: 32px;
+    right: 48px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0;
+    animation: fadeUp 0.8s 1.2s forwards;
+  }
+  .scroll-line {
+    width: 40px; height: 1px;
+    background: var(--muted);
+    animation: pulse 2s infinite;
+  }
+
+  /* SECTION LAYOUT */
+  section {
+    padding: 100px 48px;
+    position: relative;
+  }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 20px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 72px);
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  .section-title em { font-style: italic; color: var(--pink); }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    margin: 0 48px;
+    width: calc(100% - 96px);
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    margin-top: 60px;
+  }
+  .about-text {
+    font-size: 17px;
+    color: rgba(245,240,235,0.75);
+    line-height: 1.85;
+    font-weight: 300;
+  }
+  .about-text p + p { margin-top: 20px; }
+  .about-text strong { color: var(--white); font-weight: 500; }
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 0;
+  }
+  .skill-tag {
+    padding: 6px 16px;
+    border: 1px solid var(--border);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .skill-tag:hover {
+    border-color: var(--pink);
+    color: var(--pink);
+  }
+  .certs {
+    margin-top: 36px;
+  }
+  .cert-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .cert-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--pink);
+    flex-shrink: 0;
+  }
+
+  /* CASE STUDIES */
+  .cases-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .case-cards {
+    display: grid;
+    gap: 2px;
+  }
+  .case-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+    transition: border-color 0.3s, background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .case-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 0;
+    background: var(--pink);
+    transition: height 0.4s ease;
+  }
+  .case-card:hover::before { height: 100%; }
+  .case-card:hover { border-color: rgba(232,84,122,0.3); }
+  .case-num {
+    font-family: var(--font-display);
+    font-size: 72px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    position: absolute;
+    top: 20px; right: 32px;
+  }
+  .case-type {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 12px;
+  }
+  .case-brand {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 3vw, 34px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .case-niche {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .case-services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .case-svc {
+    font-size: 11px;
+    padding: 4px 10px;
+    background: rgba(255,255,255,0.04);
+    color: var(--muted);
+    border-radius: 2px;
+  }
+  .case-result {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700;
+    color: var(--pink);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .case-result-label {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .case-insight {
+    font-size: 14px;
+    color: rgba(245,240,235,0.6);
+    line-height: 1.7;
+    font-style: italic;
+    border-left: 2px solid var(--pink);
+    padding-left: 16px;
+  }
+  .case-what {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .case-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .case-points li {
+    font-size: 14px;
+    color: rgba(245,240,235,0.7);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .case-points li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--pink);
+    font-size: 12px;
+  }
+
+  /* SPEC WORK SECTION */
+  .spec-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 48px;
+  }
+  .spec-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 40px;
+    transition: border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .spec-card:hover { border-color: rgba(232,84,122,0.3); }
+  .spec-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .spec-brand {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .spec-subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .spec-pillars {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .pillar {
+    flex: 1;
+    min-width: 80px;
+    padding: 16px 12px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    text-align: center;
+  }
+  .pillar-letter {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--pink);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .pillar-name {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+  .spec-hook {
+    font-size: 14px;
+    color: rgba(245,240,235,0.65);
+    font-style: italic;
+    line-height: 1.6;
+    border-left: 2px solid var(--gold);
+    padding-left: 16px;
+    margin-top: 16px;
+  }
+
+  /* EXPERIENCE TIMELINE */
+  .timeline {
+    margin-top: 60px;
+    position: relative;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+  .timeline-item {
+    padding: 0 0 56px 48px;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -4px; top: 6px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--black);
+    border: 2px solid var(--pink);
+  }
+  .timeline-period {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .timeline-role {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 2.5vw, 28px);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .timeline-company {
+    font-size: 14px;
+    color: var(--pink);
+    margin-bottom: 16px;
+  }
+  .timeline-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .timeline-points li {
+    font-size: 14px;
+    color: rgba(245,240,235,0.65);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .timeline-points li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .contact-headline {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 700;
+    line-height: 1.05;
+  }
+  .contact-headline em {
+    font-style: italic;
+    color: var(--pink);
+  }
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .contact-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .contact-value {
+    font-size: 17px;
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-value:hover { color: var(--pink); }
+  .availability {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 32px;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+  .avail-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #4ade80;
+    animation: pulse-green 2s infinite;
+  }
+  @keyframes pulse-green {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(74,222,128,0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(74,222,128,0); }
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* PROGRESS BAR */
+  .progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: var(--pink);
+    z-index: 200;
+    transition: width 0.1s;
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      inset: 0;
+      background: var(--black);
+      justify-content: center;
+      align-items: center;
+      gap: 32px;
+      z-index: 99;
+    }
+    .nav-links.open a { font-size: 18px; }
+    .nav-toggle { display: flex; z-index: 100; }
+
+    .hero { padding: 0 24px 60px; }
+    section { padding: 60px 24px; }
+    .divider { margin: 0 24px; width: calc(100% - 48px); }
+
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .case-card { grid-template-columns: 1fr; gap: 32px; padding: 28px; }
+    .spec-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    footer { flex-direction: column; gap: 10px; text-align: center; padding: 24px; }
+    .hero-stats { gap: 28px; }
+    .hero-scroll { display: none; }
+    .case-num { font-size: 48px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Progress bar -->
+<div class="progress-bar" id="progress"></div>
+
+<!-- Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">MR.</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#spec">Spec Work</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-text">GROWTH</div>
+  <div class="hero-tag">Social Media Strategist · Delhi NCR</div>
+  <h1 class="hero-name">Mehak<br><em>Rathee.</em></h1>
+  <p class="hero-sub">I build brands people trust — through strategy, storytelling, and content that stops the scroll. Not just posts. Systems that grow.</p>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">₹1<span>Cr+</span></div>
+      <div class="stat-label">Revenue Generated</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">50<span>K–100K</span></div>
+      <div class="stat-label">Reel Views</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">10<span>x</span></div>
+      <div class="stat-label">Follower Growth</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">4<span>+</span></div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll to explore
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label reveal">Who I Am</div>
+  <div class="about-grid">
+    <div>
+      <h2 class="section-title reveal">Strategy-first.<br><em>Story-driven.</em><br>Results-backed.</h2>
+      <div class="about-text reveal reveal-delay-1">
+        <p>I'm a Social Media Strategist with 4+ years of experience building brand presence, driving organic growth, and converting audiences into customers. I don't just create content — I build systems that make people stop, engage, and buy.</p>
+        <p>I understand that premium brands are sold through <strong>aspiration, not advertising</strong>. Every strategy I build maps content to a clear business outcome — reach, trust, or conversion.</p>
+        <p>Experienced across agencies, startups, and independent consulting — in Fitness, Fashion, Home Decor, FMCG, and Lifestyle verticals.</p>
+      </div>
+    </div>
+    <div>
+      <div class="section-label reveal">Core Skills</div>
+      <div class="skills-grid reveal reveal-delay-1">
+        <span class="skill-tag">Content Strategy</span>
+        <span class="skill-tag">Reel Scripting</span>
+        <span class="skill-tag">Hook Writing</span>
+        <span class="skill-tag">Brand Positioning</span>
+        <span class="skill-tag">Influencer Outreach</span>
+        <span class="skill-tag">Meta Ads</span>
+        <span class="skill-tag">Caption Copywriting</span>
+        <span class="skill-tag">Audience Research</span>
+        <span class="skill-tag">80/20 Content Mix</span>
+        <span class="skill-tag">Community Building</span>
+        <span class="skill-tag">Zoho CRM</span>
+        <span class="skill-tag">HubSpot</span>
+        <span class="skill-tag">Canva</span>
+        <span class="skill-tag">Social Listening</span>
+        <span class="skill-tag">Email Automation</span>
+        <span class="skill-tag">Instagram Insights</span>
+        <span class="skill-tag">Adobe Premiere Pro</span>
+        <span class="skill-tag">Lead Generation</span>
+      </div>
+      <div class="certs reveal reveal-delay-2">
+        <div class="section-label" style="margin-top:32px">Certified In</div>
+        <div class="cert-item"><div class="cert-dot"></div>Social Media Marketing — HubSpot Academy</div>
+        <div class="cert-item"><div class="cert-dot"></div>Digital Marketing — IIDE</div>
+        <div class="cert-item"><div class="cert-dot"></div>Canva Design Workshop</div>
+        <div class="cert-item"><div class="cert-dot"></div>Zinmatt Internship Program</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CASE STUDIES -->
+<section id="work">
+  <div class="cases-intro">
+    <div>
+      <div class="section-label reveal">Real Client Work</div>
+      <h2 class="section-title reveal">Where I've<br><em>delivered.</em></h2>
+    </div>
+    <p class="reveal" style="max-width:320px; color:var(--muted); font-size:14px; line-height:1.7">Every case study below shows a clear brief, a clear strategy, and a clear outcome. No fluff.</p>
+  </div>
+
+  <div class="case-cards">
+
+    <!-- Case 1: Packster -->
+    <div class="case-card reveal">
+      <div class="case-num">01</div>
+      <div>
+        <div class="case-type">Real Client · Instagram Growth</div>
+        <div class="case-brand">Packster</div>
+        <div class="case-niche">Luggage & Bag Brand</div>
+        <div class="case-services">
+          <span class="case-svc">Content Calendar</span>
+          <span class="case-svc">Reel Scripts</span>
+          <span class="case-svc">Post Strategy</span>
+        </div>
+      </div>
+      <div>
+        <div class="case-result">10x</div>
+        <div class="case-result-label">Follower Growth · 100 → 1,000</div>
+        <div class="case-insight">"Every single day had a purpose — engagement, reach, trust, or conversion. No random posting."</div>
+      </div>
+      <div>
+        <div class="case-what">The Strategy</div>
+        <ul class="case-points">
+          <li>7-day content calendar with specific daily objectives</li>
+          <li>Problem-solution storytelling — not product shots</li>
+          <li>Reels, Carousels and Stories mapped to business goals</li>
+          <li>CTA-driven captions with direct purchase links</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Case 2: Dismantle Digital -->
+    <div class="case-card reveal reveal-delay-1">
+      <div class="case-num">02</div>
+      <div>
+        <div class="case-type">Full-Time · Sales & Marketing</div>
+        <div class="case-brand">Dismantle Digital</div>
+        <div class="case-niche">E-Commerce / DTC</div>
+        <div class="case-services">
+          <span class="case-svc">Instagram DMs</span>
+          <span class="case-svc">WhatsApp Sales</span>
+          <span class="case-svc">Zoho CRM</span>
+        </div>
+      </div>
+      <div>
+        <div class="case-result">₹1Cr+</div>
+        <div class="case-result-label">Revenue · 800+ Customers Converted</div>
+        <div class="case-insight">"Managed the full funnel — from first impression to repeat purchase — using data-driven content and strategic follow-ups."</div>
+      </div>
+      <div>
+        <div class="case-what">What I Did</div>
+        <ul class="case-points">
+          <li>Converted 800+ customers via Instagram & WhatsApp engagement</li>
+          <li>Used Zoho & Telephant CRM for pipeline management</li>
+          <li>Built content that moved leads from awareness to checkout</li>
+          <li>Nurtured repeat buyers through community engagement</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Case 3: L'lure -->
+    <div class="case-card reveal reveal-delay-2">
+      <div class="case-num">03</div>
+      <div>
+        <div class="case-type">Pitch Deck · Social Revamp</div>
+        <div class="case-brand">L'lure Home & Living</div>
+        <div class="case-niche">Premium Home Decor</div>
+        <div class="case-services">
+          <span class="case-svc">Brand Audit</span>
+          <span class="case-svc">30-Day Calendar</span>
+          <span class="case-svc">Reel Scripts</span>
+          <span class="case-svc">KPI Framework</span>
+        </div>
+      </div>
+      <div>
+        <div class="case-result">1.1M</div>
+        <div class="case-result-label">Views proof identified & strategy built on it</div>
+        <div class="case-insight">"Beautiful brand. Invisible online. I audited their 1.1M-view reel to understand exactly why it worked — then built a full revamp strategy from that blueprint."</div>
+      </div>
+      <div>
+        <div class="case-what">The Approach</div>
+        <ul class="case-points">
+          <li>Honest audit: identified zero engagement problem despite strong views</li>
+          <li>3-Pillar framework: Awareness → Consideration → Conversion</li>
+          <li>6 ready-to-shoot reel ideas with full scripts</li>
+          <li>30-day content calendar + KPI tracking system</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SPEC WORK -->
+<section id="spec">
+  <div class="section-label reveal">Spec / Concept Work</div>
+  <h2 class="section-title reveal">Brands I studied.<br><em>Strategies I built.</em></h2>
+  <p class="reveal" style="color:var(--muted); font-size:14px; max-width:480px; margin-top:12px">Unsolicited strategy pitches built because I genuinely believe great brands deserve better content.</p>
+
+  <div class="spec-grid">
+
+    <!-- Beautywise -->
+    <div class="spec-card reveal">
+      <div class="spec-badge">★ Spec Work</div>
+      <div class="spec-brand">Beautywise</div>
+      <div class="spec-subtitle">Nutraceutical Beauty Brand · Shark Tank India</div>
+      <div class="spec-pillars">
+        <div class="pillar"><span class="pillar-letter">A</span><span class="pillar-name">Authority</span></div>
+        <div class="pillar"><span class="pillar-letter">R</span><span class="pillar-name">Relatability</span></div>
+        <div class="pillar"><span class="pillar-letter">C</span><span class="pillar-name">Conversion</span></div>
+      </div>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:16px">Brand Research · Instagram Audit · 3-Pillar Growth Strategy · Reel Scripts</p>
+      <div class="spec-hook">"Beautywise sells a ₹3,000 product to a woman spending ₹80,000/year on beauty. The content doesn't reflect that value yet."</div>
+    </div>
+
+    <!-- Atovio -->
+    <div class="spec-card reveal reveal-delay-1">
+      <div class="spec-badge">★ Spec Work</div>
+      <div class="spec-brand">Atovio</div>
+      <div class="spec-subtitle">Wearable Air Purifier · Delhi NCR Market</div>
+      <div class="spec-pillars">
+        <div class="pillar"><span class="pillar-letter">F</span><span class="pillar-name">Fear Hook</span></div>
+        <div class="pillar"><span class="pillar-letter">I</span><span class="pillar-name">Identity</span></div>
+        <div class="pillar"><span class="pillar-letter">V</span><span class="pillar-name">Virality</span></div>
+      </div>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:16px">Brand Research · Reel Hook Scripts · Content Strategy · Audience Insight</p>
+      <div class="spec-hook">"It can't be sold by features. It has to be sold by making people feel the problem first. Relatability converts better than polished ads."</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label reveal">Career</div>
+  <h2 class="section-title reveal">The work<br><em>behind</em> the work.</h2>
+
+  <div class="timeline">
+
+    <div class="timeline-item reveal">
+      <div class="timeline-period">Dec 2025 – Feb 2026</div>
+      <div class="timeline-role">Assistant Manager — Marketing & Operations</div>
+      <div class="timeline-company">R3R Creative Solutions</div>
+      <ul class="timeline-points">
+        <li>Led end-to-end social media strategy and content calendar across Instagram and LinkedIn</li>
+        <li>Generated B2B leads via targeted LinkedIn outreach, contributing to new client acquisition</li>
+        <li>Managed email automation sequences for lead nurturing and client engagement</li>
+        <li>Created pitch decks and proposals that won new business</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item reveal reveal-delay-1">
+      <div class="timeline-period">Jan 2025 – Dec 2025</div>
+      <div class="timeline-role">Webstore Management — Sales & Marketing</div>
+      <div class="timeline-company">Dismantle Digital Pvt. Ltd.</div>
+      <ul class="timeline-points">
+        <li>Converted 800+ customers generating ₹1 Cr+ in revenue</li>
+        <li>Managed full sales funnel: awareness → conversion using data-driven content</li>
+        <li>Used Zoho and Telephant CRM for lead tracking and customer retention</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item reveal reveal-delay-2">
+      <div class="timeline-period">Jan 2023 – Dec 2024</div>
+      <div class="timeline-role">Social Media Strategist</div>
+      <div class="timeline-company">Independent Consultant</div>
+      <ul class="timeline-points">
+        <li>Grew organic reel reach to 50K–100K views across multiple brand clients</li>
+        <li>Improved audience engagement by 50% through posting cadence and community strategy</li>
+        <li>Managed influencer collaborations: outreach, negotiation, and performance tracking</li>
+        <li>Clients: srxbhat, jadejaluck, kjmediaproduction (Fitness, Fashion, Photography, Lifestyle)</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item reveal reveal-delay-3">
+      <div class="timeline-period">Jul 2022 – Jan 2023</div>
+      <div class="timeline-role">Director's Assistant</div>
+      <div class="timeline-company">BSoChill Technologies</div>
+      <ul class="timeline-points">
+        <li>Supported content operations, moderation, and platform management</li>
+        <li>Tracked engagement metrics and compiled feedback reports for product decisions</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-grid">
+    <div>
+      <div class="section-label reveal">Let's Talk</div>
+      <h2 class="contact-headline reveal">Ready to grow<br>your <em>brand?</em></h2>
+      <div class="availability reveal reveal-delay-1">
+        <div class="avail-dot"></div>
+        Available immediately · Based in Delhi NCR
+      </div>
+    </div>
+    <div class="contact-links reveal reveal-delay-1">
+      <div class="contact-item">
+        <div class="contact-label">Email</div>
+        <a href="mailto:mehakrathee86@gmail.com" class="contact-value">mehakrathee86@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Phone</div>
+        <a href="tel:+919350245280" class="contact-value">+91-9350245280</a>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">LinkedIn</div>
+        <a href="https://linkedin.com/in/mehak-rathee-ba0aab206" target="_blank" class="contact-value">linkedin.com/in/mehak-rathee</a>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Video Portfolio</div>
+        <a href="https://drive.google.com/drive/folders/1iSpFbS7S5VLm0II-B1ov0TBCAtMHhydA" target="_blank" class="contact-value">View on Google Drive →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Mehak Rathee</span>
+  <span>Social Media Strategist · Content & Brand Growth Specialist</span>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+  function animateRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+  document.querySelectorAll('a, button, .skill-tag, .case-card, .spec-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '16px';
+      cursor.style.height = '16px';
+      ring.style.width = '52px';
+      ring.style.height = '52px';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '10px';
+      cursor.style.height = '10px';
+      ring.style.width = '36px';
+      ring.style.height = '36px';
+    });
+  });
+
+  // Progress bar
+  const progress = document.getElementById('progress');
+  window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (scrollTop / docHeight * 100) + '%';
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav toggle
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  document.getElementById('navLinks').querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+
+  // Hide cursor on mobile
+  if ('ontouchstart' in window) {
+    cursor.style.display = 'none';
+    ring.style.display = 'none';
+    document.body.style.cursor = 'auto';
+  }
+</script>
+</body>
+</html>
