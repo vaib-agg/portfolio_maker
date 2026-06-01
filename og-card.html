@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Source for assets/og.png — the social share card. Render at 1200x630:
+     chrome --headless=new --screenshot=assets/og.png --window-size=1200,630 \
+            --force-device-scale-factor=2 --virtual-time-budget=3500 http://localhost:PORT/og-card.html
+     Re-run if the logo or tagline changes. Not linked from the site. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  html, body { margin: 0; padding: 0; }
+  .og {
+    width: 1200px; height: 630px; box-sizing: border-box;
+    background: var(--navy); color: var(--bone);
+    padding: 72px 80px; position: relative; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: space-between;
+    font-family: var(--sans);
+  }
+  .og-watermark {
+    position: absolute; right: -30px; bottom: -150px;
+    font-family: var(--deva); font-size: 500px; line-height: 1;
+    color: var(--bone); opacity: 0.05; user-select: none;
+  }
+  .og-top { position: relative; z-index: 2; display: flex; align-items: center; gap: 20px; }
+  .og-logo img { height: 60px; display: block; }
+  .og-kicker {
+    font-size: 20px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--bone-2); border-left: 1px solid var(--navy-rule); padding-left: 20px;
+  }
+  .og-title {
+    position: relative; z-index: 2;
+    font-family: var(--serif); font-weight: 400; font-size: 76px; line-height: 1.04;
+    letter-spacing: -0.022em; max-width: 17ch;
+  }
+  .og-title .accent { color: var(--red-bright); font-style: italic; }
+  .og-foot {
+    position: relative; z-index: 2;
+    font-size: 23px; letter-spacing: 0.03em; color: var(--bone-2);
+  }
+  .og-foot b { color: var(--bone); font-weight: 600; }
+  .og-foot .sep { color: var(--navy-rule); margin: 0 12px; }
+</style>
+</head>
+<body>
+  <div class="og">
+    <div class="og-watermark" aria-hidden="true">न्याव</div>
+    <div class="og-top">
+      <span class="og-logo"><img src="assets/logo-cream.png" alt="Nyave"></span>
+      <span class="og-kicker">Pre-Filing Compliance</span>
+    </div>
+    <div class="og-title">Catch SLP defects <span class="accent">before</span> the registry does.</div>
+    <div class="og-foot">DPIIT-recognised <b>· DIPP262755</b><span class="sep">·</span>Supreme Court SLPs<span class="sep">·</span>Built in the open</div>
+  </div>
+</body>
+</html>
