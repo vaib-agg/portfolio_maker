@@ -1,509 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nyave — Coming Soon</title>
-  <meta name="description" content="Nyave is a legal technology platform built for every Indian navigating the legal system.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    :root {
-      --ink: #0f0e0c;
-      --parchment: #f5f0e8;
-      --gold: #b8922a;
-      --gold-light: #d4aa4a;
-      --stone: #8a8278;
-      --rule: #d4c9b4;
-      --white: #faf8f4;
-      --edge-gap: 24px;
-      --content-safe-zone: 100px; /* Increased safe zone */
-    }
-
-    html, body {
-      height: 100%;
-      background: var(--parchment);
-      color: var(--ink);
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      overflow-x: hidden;
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      position: relative;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: 
-        radial-gradient(ellipse at 20% 50%, rgba(184,146,42,0.06) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 20%, rgba(15,14,12,0.04) 0%, transparent 50%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .top-rule {
-      position: fixed;
-      top: var(--edge-gap);
-      left: 48px;
-      right: 48px;
-      height: 1px;
-      background: var(--rule);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .bottom-rule {
-      position: fixed;
-      bottom: var(--edge-gap);
-      left: 48px;
-      right: 48px;
-      height: 1px;
-      background: var(--rule);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .container {
-      position: relative;
-      z-index: 10;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      padding: var(--content-safe-zone) 80px; /* Global safe zone */
-    }
-
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      opacity: 0;
-      animation: fadeUp 1s ease 0.2s forwards;
-      margin-bottom: 40px;
-    }
-
-    .wordmark {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .wordmark-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 36px;
-      font-weight: 300;
-      letter-spacing: 0.08em;
-      color: var(--ink);
-      line-height: 1;
-    }
-
-    .wordmark-pronunciation {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      text-transform: none;
-    }
-
-    .wordmark-by {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--stone);
-      margin-top: 2px;
-    }
-
-    .status-pill {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid var(--gold);
-      padding: 6px 14px;
-      border-radius: 0;
-    }
-
-    .main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 20px 0; 
-      max-width: 820px;
-    }
-
-    .eyebrow {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 32px;
-      opacity: 0;
-      animation: fadeUp 1s ease 0.5s forwards;
-    }
-
-    .headline {
-      font-size: clamp(48px, 8vw, 84px);
-      font-weight: 300;
-      line-height: 1.0;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-      margin-bottom: 48px;
-      opacity: 0;
-      animation: fadeUp 1s ease 0.7s forwards;
-    }
-
-    .headline em {
-      font-style: italic;
-      color: var(--gold);
-    }
-
-    .divider {
-      width: 48px;
-      height: 1px;
-      background: var(--gold);
-      margin-bottom: 40px;
-      opacity: 0;
-      animation: fadeUp 1s ease 0.9s forwards;
-    }
-
-    .description {
-      font-size: 20px;
-      font-weight: 300;
-      line-height: 1.7;
-      color: var(--stone);
-      max-width: 560px;
-      margin-bottom: 64px;
-      opacity: 0;
-      animation: fadeUp 1s ease 1.1s forwards;
-    }
-
-    .description strong {
-      color: var(--ink);
-      font-weight: 400;
-    }
-
-    .notify-form {
-      display: flex;
-      gap: 0;
-      max-width: 480px;
-      opacity: 0;
-      animation: fadeUp 1s ease 1.3s forwards;
-    }
-
-    .notify-input {
-      flex: 1;
-      padding: 14px 20px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 16px;
-      font-weight: 300;
-      color: var(--ink);
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-right: none;
-      outline: none;
-      transition: border-color 0.3s;
-      letter-spacing: 0.01em;
-    }
-
-    .notify-input::placeholder {
-      color: var(--stone);
-      opacity: 0.6;
-    }
-
-    .notify-input:focus {
-      border-color: var(--gold);
-    }
-
-    .notify-btn {
-      padding: 14px 28px;
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--white);
-      background: var(--ink);
-      border: 1px solid var(--ink);
-      cursor: pointer;
-      transition: background 0.3s, color 0.3s;
-      white-space: nowrap;
-    }
-
-    .notify-btn:hover {
-      background: var(--gold);
-      border-color: var(--gold);
-    }
-
-    .form-note {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      color: var(--stone);
-      margin-top: 12px;
-      opacity: 0;
-      animation: fadeUp 1s ease 1.5s forwards;
-    }
-
-    .footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      padding-top: 48px;
-      padding-bottom: 20px; /* Extra padding to clear the rule */
-      margin-top: 60px;
-      border-top: 1px solid var(--rule);
-      opacity: 0;
-      animation: fadeUp 1s ease 1.7s forwards;
-    }
-
-    .footer-left .company {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--stone);
-      margin-bottom: 4px;
-    }
-
-    .footer-left .tagline {
-      font-size: 14px;
-      font-weight: 300;
-      font-style: italic;
-      color: var(--stone);
-    }
-
-    .footer-right {
-      text-align: right;
-    }
-
-    .footer-right .contact-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 16px;
-      font-weight: 400;
-      color: var(--ink);
-      margin-bottom: 2px;
-    }
-
-    .footer-right .contact-meta {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      color: var(--stone);
-      margin-bottom: 2px;
-      text-transform: uppercase;
-    }
-
-    .footer-right .contact {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      color: var(--stone);
-      text-decoration: none;
-      transition: color 0.3s;
-      display: block;
-      margin-bottom: 2px;
-    }
-
-    .footer-right .contact:hover {
-      color: var(--gold);
-    }
-
-    .footer-right .contact-hq {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      color: var(--stone);
-      opacity: 0.7;
-      text-transform: uppercase;
-    }
-
-    .v-rule {
-      position: fixed;
-      right: 80px;
-      top: 80px;
-      bottom: 80px;
-      width: 1px;
-      background: linear-gradient(to bottom, transparent, var(--rule) 20%, var(--rule) 80%, transparent);
-      z-index: 0;
-      opacity: 0;
-      animation: fadeIn 2s ease 2s forwards;
-    }
-
-    .bg-wordmark {
-      position: fixed;
-      bottom: -40px;
-      right: 100px;
-      font-size: clamp(180px, 25vw, 320px);
-      font-weight: 300;
-      font-style: italic;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(184,146,42,0.08);
-      line-height: 1;
-      pointer-events: none;
-      z-index: 0;
-      user-select: none;
-      opacity: 0;
-      animation: fadeIn 3s ease 2s forwards;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .success-msg {
-      display: none;
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-top: 16px;
-    }
-
-    @media (max-width: 768px) {
-      :root {
-        --edge-gap: 16px;
-        --content-safe-zone: 60px;
-      }
-      
-      .container {
-        padding: var(--content-safe-zone) 32px;
-      }
-
-      .top-rule, .bottom-rule {
-        left: 24px;
-        right: 24px;
-      }
-
-      .v-rule {
-        display: none;
-      }
-
-      .notify-form {
-        flex-direction: column;
-        max-width: 100%;
-      }
-
-      .notify-input {
-        border-right: 1px solid var(--rule);
-        border-bottom: none;
-      }
-
-      .footer {
-        flex-direction: column;
-        gap: 24px;
-        align-items: flex-start;
-        padding-bottom: 40px;
-      }
-
-      .footer-right {
-        text-align: left;
-      }
-
-      .bg-wordmark {
-        display: none;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nyave — Pre-Filing Compliance for Supreme Court SLPs</title>
+<meta name="description" content="Nyave is India's first automated pre-filing compliance platform built specifically for Supreme Court Special Leave Petitions (SLPs). Built by Yogkshem Technology Pvt Ltd. DPIIT-recognised, DIPP262755.">
+<meta property="og:title" content="Nyave — Pre-Filing Compliance for Supreme Court SLPs">
+<meta property="og:description" content="Catch formatting, structural, and procedural defects before they hit the court registry. DPIIT-recognised deep-tech, built in the open.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@500;600;700&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <div class="top-rule"></div>
-  <div class="bottom-rule"></div>
-  <div class="bg-wordmark">Nyave</div>
-  <div class="v-rule"></div>
-
-  <div class="container">
-
-    <header class="header">
-      <div class="wordmark">
-        <div class="wordmark-name">Nyave</div>
-        <div class="wordmark-pronunciation">("Ny-ah-vay")</div>
-        <div class="wordmark-by">by Yogkshem Technology</div>
-      </div>
-      <div class="status-pill">Coming Soon</div>
-    </header>
-
-    <main class="main">
-      <p class="eyebrow">Legal Technology Platform · India</p>
-
-      <h1 class="headline">
-        Built for every<br>
-        Indian navigating<br>
-        the <em>legal system.</em>
-      </h1>
-
-      <div class="divider"></div>
-
-      <p class="description">
-        The system is complex. Finding your way through it should not be.<br>
-        <strong>Nyave</strong> is being built for the lawyer at the registry counter,
-        and for every ordinary Indian who deserves to understand what is happening to them.
-      </p>
-
-      <form class="notify-form" onsubmit="handleSubmit(event)">
-        <input
-          class="notify-input"
-          type="email"
-          placeholder="your@email.com"
-          required
-          id="emailInput"
-        />
-        <button class="notify-btn" type="submit">Notify Me</button>
-      </form>
-      <p class="form-note">No spam. One email when we launch.</p>
-      <p class="success-msg" id="successMsg">✓ &nbsp; You are on the list.</p>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-left">
-        <p class="company">Yogkshem Technology Private Limited</p>
-        <p class="tagline">Security and growth, for every Indian.</p>
-      </div>
-      <div class="footer-right">
-        <p class="contact-name">Vaibhav Aggarwal</p>
-        <p class="contact-meta">Founder &amp; CEO</p>
-        <a href="mailto:vaibhav@nyave.in" class="contact">vaibhav@nyave.in</a>
-        <p class="contact-hq">HQ · Ambala City, Haryana</p>
-      </div>
-    </footer>
-
+<!-- ===== NAV ===== -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="Nyave home">
+      <span class="brand-plate"><img src="assets/logo-cream.png" alt="Nyave — न्याव"></span>
+      <span class="brand-tag">Pre-Filing Compliance</span>
+    </a>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav class="nav-links">
+      <a class="nav-link active" href="index.html">Problem</a>
+      <a class="nav-link" href="approach.html">Approach</a>
+      <a class="nav-link" href="where-we-stand.html">Where we stand</a>
+      <a class="nav-link" href="founder.html">Founder</a>
+      <a class="nav-link" href="get-involved.html">Get involved</a>
+      <a class="nav-cta" href="mailto:vaibhav@nyave.in">Contact</a>
+    </nav>
   </div>
+</header>
 
-  <script>
-    function handleSubmit(e) {
-      e.preventDefault();
-      const input = document.getElementById('emailInput');
-      const msg = document.getElementById('successMsg');
-      const form = document.querySelector('.notify-form');
-      const note = document.querySelector('.form-note');
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-watermark" aria-hidden="true">न्याव</div>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow hero-eyebrow"><span class="num">●</span> Pre-Filing Compliance · Supreme Court SLPs</div>
+      <h1 class="hero-title">Shifting legal compliance from post-registry return to <span class="accent">pre-filing compliance.</span></h1>
+      <p class="hero-sub">Nyave is India's first automated pre-filing compliance platform built specifically for Supreme Court Special Leave Petitions (SLPs). We catch formatting, structural, and procedural defects before they hit the court registry.</p>
+      <div class="hero-launch">
+        <span class="hero-launch-label">Expected Public Launch</span>
+        <span class="hero-launch-date">15 July 2026<span class="ast">*</span></span>
+      </div>
+      <span class="hero-launch-note">* Tough, but not impossible.</span>
+      <div class="hero-meta">
+        <span>DPIIT-recognised · <b>DIPP262755</b></span>
+        <span class="dot" aria-hidden="true"></span>
+        <span>Bootstrapped · Built in the open</span>
+      </div>
+    </div>
 
-      form.style.display = 'none';
-      note.style.display = 'none';
-      msg.style.display = 'block';
-      msg.style.opacity = '1';
-    }
-  </script>
+    <!-- ===== QUICK TRACKER ===== -->
+    <div class="qtrack reveal">
+      <div class="qtrack-head">
+        <h2>Build Progress — Quick View</h2>
+        <span class="qtrack-asof">As of <span class="js-asof">1 June 2026</span> · <a href="mailto:vaibhav@nyave.in">current status</a></span>
+      </div>
+      <div class="qtrack-list">
+        <div class="qstage is-active" data-stage="prototype">
+          <div class="qstage-top"><span class="qstage-node"></span><span class="qstage-idx">Stage 01</span></div>
+          <div class="qstage-name">Architecture &amp; Core Engine Testing</div>
+          <div class="qstage-prog"><span class="qstage-pct">46%</span><span class="qstage-status">Ongoing</span></div>
+          <div class="qbar"><span class="qbar-fill" style="width:46%"></span></div>
+        </div>
+        <div class="qstage is-next" data-stage="validation">
+          <div class="qstage-top"><span class="qstage-node"></span><span class="qstage-idx">Stage 02</span></div>
+          <div class="qstage-name">Ground-Truth Validation &amp; Stress Tests</div>
+          <div class="qstage-prog"><span class="qstage-pct muted">0%</span><span class="qstage-status">Upcoming</span></div>
+          <div class="qbar"><span class="qbar-fill" style="width:0%"></span></div>
+        </div>
+        <div class="qstage is-next" data-stage="beta">
+          <div class="qstage-top"><span class="qstage-node"></span><span class="qstage-idx">Stage 03</span></div>
+          <div class="qstage-name">Beta Launch</div>
+          <div class="qstage-prog"><span class="qstage-pct muted">0%</span><span class="qstage-status">Upcoming</span></div>
+          <div class="qbar"><span class="qbar-fill" style="width:0%"></span></div>
+        </div>
+        <div class="qstage is-target" data-stage="launch">
+          <div class="qstage-top"><span class="qstage-node"></span><span class="qstage-idx">Stage 04</span></div>
+          <div class="qstage-name">Public Launch</div>
+          <div class="qstage-prog"><span class="qstage-status">Target · <b>15 July 2026</b><span class="ast">*</span></span></div>
+          <div class="qbar"><span class="qbar-fill target" style="width:0%"></span></div>
+        </div>
+      </div>
+      <a class="qtrack-link" href="where-we-stand.html">View the full pipeline →</a>
+      <p class="asof-note">Progress state updated as of <span class="js-asof">1 June 2026</span>; may not reflect live progress. For real-time updates, reach out to <a href="mailto:vaibhav@nyave.in">vaibhav@nyave.in</a>.</p>
+    </div>
+  </div>
+</section>
 
+<!-- ===== ONWARD ===== -->
+<section class="section tight">
+  <div class="wrap">
+    <div class="cols2 reveal">
+      <div>
+        <div class="eyebrow"><span class="tick"></span> The systemic problem</div>
+        <p class="lead serif" style="margin-top:var(--s5); font-size:var(--t-xl); line-height:var(--lh-snug); letter-spacing:var(--tr-snug); max-width:22ch;">Filing an SLP means manual cross-reference across a fragmented ecosystem of rules, handbooks, and dynamic registry circulars.</p>
+      </div>
+      <div>
+        <p class="prose">Our empirical analysis reveals an overwhelming defect rate in filed petitions — and a timeline collision that can end in outright dismissal. Nyave introduces a preemptive compliance layer that catches those defects before the filing portal is ever touched.</p>
+        <p class="prose" style="margin-top:var(--s6);">
+          <a class="founder-link" href="approach.html" style="margin-top:0;">Read the approach →</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo"><img src="assets/logo-cream.png" alt="Nyave — न्याव"></div>
+        <p class="footer-entity"><b>Yogkshem Technology Private Limited</b> — building Nyave, a pre-filing compliance platform for Supreme Court Special Leave Petitions. Incorporated 22 April 2026.</p>
+        <div class="seq">
+          <span>Incorporated <b>22 Apr 2026</b></span>
+          <span class="arrow" aria-hidden="true">→</span>
+          <span>DPIIT-recognised <b>19 May 2026</b></span>
+        </div>
+      </div>
+      <div class="dpiit">
+        <a class="dpiit-qr" href="assets/DPIIT-Certificate.pdf" target="_blank" rel="noopener" aria-label="View and verify the DPIIT recognition certificate">
+          <img src="assets/dpiit-qr.png" alt="QR code linking to the official DPIIT recognition certificate">
+          <span class="dpiit-qr-cap">Scan to verify</span>
+        </a>
+        <div class="dpiit-body">
+          <div class="dpiit-label">Government of India · DPIIT</div>
+          <div class="dpiit-id">DIPP262755</div>
+          <div class="dpiit-date">Recognised 19 May 2026 · Startup India</div>
+          <a class="dpiit-link" href="assets/DPIIT-Certificate.pdf" target="_blank" rel="noopener">View certificate ↗</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <nav class="footer-nav">
+        <a href="index.html">Problem</a>
+        <a href="approach.html">Approach</a>
+        <a href="where-we-stand.html">Where we stand</a>
+        <a href="founder.html">Founder</a>
+        <a href="get-involved.html">Get involved</a>
+      </nav>
+      <div class="footer-contact">Contact · <a href="mailto:vaibhav@nyave.in">vaibhav@nyave.in</a></div>
+    </div>
+    <p class="footer-legal">© 2026 Yogkshem Technology Private Limited. All rights reserved. · <a href="terms.html">Terms of Use &amp; Privacy Policy</a></p>
+  </div>
+</footer>
+
+<script src="site.js"></script>
 </body>
 </html>

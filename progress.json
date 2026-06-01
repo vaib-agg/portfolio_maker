@@ -1,0 +1,37 @@
+{
+  "as_of": "1 June 2026",
+  "launch_target": "15 July 2026",
+  "launch_note": "Tough, but not impossible.",
+  "contact": "vaibhav@nyave.in",
+  "stages": [
+    {
+      "id": "prototype",
+      "label": "Architecture & Core Engine Testing",
+      "status": "ongoing",
+      "public_status": "Ongoing",
+      "percent": 46
+    },
+    {
+      "id": "validation",
+      "label": "Ground-Truth Validation & Stress Tests",
+      "status": "upcoming",
+      "public_status": "Upcoming",
+      "percent": 0
+    },
+    {
+      "id": "beta",
+      "label": "Beta Launch",
+      "status": "upcoming",
+      "public_status": "Upcoming",
+      "percent": 0
+    },
+    {
+      "id": "launch",
+      "label": "Public Launch",
+      "status": "target",
+      "public_status": "Target",
+      "date": "15 July 2026",
+      "percent": null
+    }
+  ]
+}

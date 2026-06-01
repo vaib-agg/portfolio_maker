@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Where We Stand — Nyave</title>
+<meta name="description" content="Nyave's build progress: core engine hardening on a proprietary dataset of 2,000+ SLPs, ground-truth validation, and the road to launch.">
+<meta property="og:title" content="Where We Stand — Nyave">
+<meta property="og:description" content="The detailed, dated progress view — core engine hardening, active technical challenges, and the forward roadmap.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@500;600;700&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="Nyave home">
+      <span class="brand-plate"><img src="assets/logo-cream.png" alt="Nyave — न्याव"></span>
+      <span class="brand-tag">Pre-Filing Compliance</span>
+    </a>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav class="nav-links">
+      <a class="nav-link" href="index.html">Problem</a>
+      <a class="nav-link" href="approach.html">Approach</a>
+      <a class="nav-link active" href="where-we-stand.html">Where we stand</a>
+      <a class="nav-link" href="founder.html">Founder</a>
+      <a class="nav-link" href="get-involved.html">Get involved</a>
+      <a class="nav-cta" href="mailto:vaibhav@nyave.in">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== PAGE HEAD ===== -->
+<div class="page-head">
+  <div class="wrap reveal">
+    <div class="eyebrow"><span class="num">02</span> <span class="tick"></span> Where we stand</div>
+    <h1 class="page-title">Built in the open. Dated, and honest.</h1>
+    <p class="page-lede">A staged view of the build — where we are today, what we are hardening, and the road to launch.</p>
+  </div>
+</div>
+
+<!-- ===== DETAILED TIMELINE ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="tick"></span> Build Progress — Detailed View</div>
+      <h2 class="section-title">Prototype → Validation → Beta → Launch.</h2>
+    </div>
+
+    <div class="timeline reveal">
+      <div class="tl-fill" aria-hidden="true"></div>
+
+      <div class="tl-item is-active" data-stage="prototype">
+        <div class="tl-node"></div>
+        <div class="tl-top">
+          <span class="tl-idx">Stage 01</span>
+          <span class="tl-name">Architecture &amp; Core Engine Testing</span>
+          <span class="tl-status">Ongoing · 46%</span>
+        </div>
+        <div class="tl-bar"><span class="tl-bar-fill" style="width:46%"></span></div>
+        <p class="tl-desc">Iterative testing of the core engine across civil, criminal, and custody filings to make sure the platform handles real-world document variations smoothly.</p>
+      </div>
+
+      <div class="tl-item is-next" data-stage="validation">
+        <div class="tl-node"></div>
+        <div class="tl-top">
+          <span class="tl-idx">Stage 02</span>
+          <span class="tl-name">Ground-Truth Validation &amp; Stress Tests</span>
+          <span class="tl-status">Upcoming · 0%</span>
+        </div>
+        <div class="tl-bar"><span class="tl-bar-fill" style="width:0%"></span></div>
+        <p class="tl-desc">Running ground-truth validation against real Supreme Court filings, working toward the launch accuracy target.</p>
+      </div>
+
+      <div class="tl-item is-next" data-stage="beta">
+        <div class="tl-node"></div>
+        <div class="tl-top">
+          <span class="tl-idx">Stage 03</span>
+          <span class="tl-name">Beta Launch</span>
+          <span class="tl-status">Upcoming · 0%</span>
+        </div>
+        <div class="tl-bar"><span class="tl-bar-fill" style="width:0%"></span></div>
+        <p class="tl-desc">A working beta placed in the hands of design-partner Advocates-on-Record, running real, consented filings pre-submission.</p>
+      </div>
+
+      <div class="tl-item is-target" data-stage="launch">
+        <div class="tl-node"></div>
+        <div class="tl-top">
+          <span class="tl-idx">Stage 04</span>
+          <span class="tl-name">Public Launch</span>
+          <span class="tl-status">Target</span>
+          <span class="tl-date">15 July 2026<span class="ast">*</span></span>
+        </div>
+        <p class="tl-desc">Public availability for Advocates-on-Record — the expected launch milestone.</p>
+        <span class="tl-note">* Tough, but not impossible.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CORE ENGINE HARDENING ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="cols2 reveal">
+      <div>
+        <div class="col-label">Core Engine Hardening</div>
+        <p class="lead serif" style="font-size:var(--t-xl); line-height:var(--lh-snug); letter-spacing:var(--tr-snug); color:var(--ink); max-width:20ch;">Built on a proprietary dataset of real Supreme Court filings.</p>
+      </div>
+      <div>
+        <p class="prose">Our rule engine is built on a proprietary dataset of over <span class="stat-inline">2,000<span class="ast">*</span></span> SLPs filed in the last 8 years, capturing more than <span class="stat-inline">10,000<span class="ast">*</span></span> unique defect instances. We are currently running iterative testing across civil, criminal, and custody filings to make sure the platform handles real-world document variations smoothly.</p>
+      </div>
+    </div>
+
+    <div class="stat-row reveal">
+      <div class="stat-card">
+        <div class="stat-fig"><span data-count="2000" data-decimals="0">0</span><span class="ast">*</span><span class="unit">SLPs</span></div>
+        <p class="stat-label">Special Leave Petitions in the proprietary dataset.</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-fig"><span data-count="8" data-decimals="0">0</span><span class="unit">years</span></div>
+        <p class="stat-label">Span of filings the dataset draws from.</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-fig"><span data-count="10000" data-decimals="0">0</span><span class="ast">*</span><span class="unit">instances</span></div>
+        <p class="stat-label">Unique defect instances captured across the dataset.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ACTIVE TECHNICAL CHALLENGES ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="cols2 reveal">
+      <div>
+        <div class="col-label">Active Technical Challenges</div>
+        <p class="lead serif" style="font-size:var(--t-xl); line-height:var(--lh-snug); letter-spacing:var(--tr-snug); color:var(--ink); max-width:20ch;">The hard, honest work between here and launch.</p>
+        <div class="stat-card" style="margin-top:var(--s7); max-width:300px;">
+          <div class="stat-eyebrow">Estimated target at launch</div>
+          <div class="stat-fig nowrap">78&ndash;82<span class="unit">%</span><span class="ast">*</span></div>
+          <p class="stat-label">Estimated accuracy target at launch, measured against ground-truth Supreme Court filings.</p>
+        </div>
+      </div>
+      <div>
+        <p class="prose">We are actively coding the scanned-document processing pipeline, establishing error handling across all detection surfaces, and running ground-truth validation against real Supreme Court filings to hit our <span class="stat-inline">78–82%<span class="ast">*</span></span> accuracy target at launch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FUTURE ROADMAP ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="tick"></span> Future Roadmap</div>
+      <h2 class="section-title">From AoR tooling to access at scale.</h2>
+    </div>
+    <div class="roadmap reveal">
+      <div class="rm-card">
+        <div class="rm-phase">Phase 1 · B2B SaaS</div>
+        <h3>Advocates-on-Record &amp; lawyers</h3>
+        <p>A subscription model with two tiers for Advocates-on-Record (AoRs) and regular lawyers, with plans to expand horizontally across major High Courts.</p>
+      </div>
+      <div class="rm-card">
+        <div class="rm-phase">Phase 2 · Consumer Freemium</div>
+        <h3>Undertrials &amp; families</h3>
+        <p>Expanding to a high-volume platform serving 4,00,000+ undertrial prisoners and their families, providing free document understanding and clear case summaries.</p>
+      </div>
+      <div class="rm-card">
+        <div class="rm-phase">Phase 3 · Marketplace</div>
+        <h3>Matched on data</h3>
+        <p>Connecting consumers to verified counsel based on objective performance data like bail success rates.</p>
+      </div>
+    </div>
+
+    <p class="asof-note reveal">Progress state updated as of <span class="js-asof">1 June 2026</span>; may not reflect live progress. For real-time updates, reach out to <a href="mailto:vaibhav@nyave.in">vaibhav@nyave.in</a>.</p>
+    <p class="footnote reveal"><span class="ast">*</span> Based on our own dataset; actual figures may differ.</p>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo"><img src="assets/logo-cream.png" alt="Nyave — न्याव"></div>
+        <p class="footer-entity"><b>Yogkshem Technology Private Limited</b> — building Nyave, a pre-filing compliance platform for Supreme Court Special Leave Petitions. Incorporated 22 April 2026.</p>
+        <div class="seq">
+          <span>Incorporated <b>22 Apr 2026</b></span>
+          <span class="arrow" aria-hidden="true">→</span>
+          <span>DPIIT-recognised <b>19 May 2026</b></span>
+        </div>
+      </div>
+      <div class="dpiit">
+        <a class="dpiit-qr" href="assets/DPIIT-Certificate.pdf" target="_blank" rel="noopener" aria-label="View and verify the DPIIT recognition certificate">
+          <img src="assets/dpiit-qr.png" alt="QR code linking to the official DPIIT recognition certificate">
+          <span class="dpiit-qr-cap">Scan to verify</span>
+        </a>
+        <div class="dpiit-body">
+          <div class="dpiit-label">Government of India · DPIIT</div>
+          <div class="dpiit-id">DIPP262755</div>
+          <div class="dpiit-date">Recognised 19 May 2026 · Startup India</div>
+          <a class="dpiit-link" href="assets/DPIIT-Certificate.pdf" target="_blank" rel="noopener">View certificate ↗</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <nav class="footer-nav">
+        <a href="index.html">Problem</a>
+        <a href="approach.html">Approach</a>
+        <a href="where-we-stand.html">Where we stand</a>
+        <a href="founder.html">Founder</a>
+        <a href="get-involved.html">Get involved</a>
+      </nav>
+      <div class="footer-contact">Contact · <a href="mailto:vaibhav@nyave.in">vaibhav@nyave.in</a></div>
+    </div>
+    <p class="footer-legal">© 2026 Yogkshem Technology Private Limited. All rights reserved. · <a href="terms.html">Terms of Use &amp; Privacy Policy</a></p>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>
