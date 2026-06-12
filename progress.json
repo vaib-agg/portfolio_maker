@@ -1,5 +1,5 @@
 {
-  "as_of": "1 June 2026",
+  "as_of": "12 June 2026",
   "launch_target": "15 July 2026",
   "launch_note": "Tough, but not impossible.",
   "contact": "vaibhav@nyave.in",
@@ -9,7 +9,7 @@
       "label": "Architecture & Core Engine Testing",
       "status": "ongoing",
       "public_status": "Ongoing",
-      "percent": 47
+      "percent": 55
     },
     {
       "id": "validation",
